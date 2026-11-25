@@ -6,16 +6,16 @@ let player={
 let cardset=[1,2,3,4,5,6,7,8,9,10,11,12,13]
 let Cards=[]
 let sum=0
-let newcard=0
-// let hasBlackJack=false
+let hasBlackJack=false
 let isAlive=true
+let gameStarted=false
 let  message= ""
-let n=2
 
 let suml=document.getElementById("js-sum")
 let cards=document.getElementById("js-cards")
 let resultl=document.getElementById("js-result")
 let playerEl=document.getElementById("player-el")
+let startButton=document.getElementById("start-btn")
 
 playerEl.textContent=player.name+" : $"+player.chip
 
@@ -57,6 +57,13 @@ function newCard()
 
 function StartGame()
 {
+    if (gameStarted)
+    {
+        return
+    }
+
+    gameStarted=true
+    startButton.disabled=true
     renderGame()
 }
 
@@ -64,6 +71,10 @@ function resetCard()
 {
     Cards=[]
     sum=0;
+    hasBlackJack=false
+    isAlive=true
+    gameStarted=false
+    startButton.disabled=false
     resultl.innerHTML="Want to play a round?";
     cards.innerHTML="Cards:";
     suml.innerHTML="Sum:";
